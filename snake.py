@@ -68,10 +68,13 @@ class Head(Turtle):
 class Segment(Turtle):
     def __init__(self, x, y):
         super().__init__()
+        self.hideturtle()
+        self.speed(0)
         self.shape("square")
         self.color("green")
         self.penup()
         self.goto(x, y)
+        self.showturtle()
 
 
 class Apple(Turtle):
@@ -79,6 +82,7 @@ class Apple(Turtle):
         super().__init__()
         self.shape("circle")
         self.color("red")
+        self.speed(0)
         self.penup()
         self.relocate()
 
@@ -135,7 +139,12 @@ def update():
         apple.relocate()
 
         last = body[-1]
-        body.append(Segment(last.xcor(), last.ycor()))
+        
+        new_segment = Segment(last.xcor(), last.ycor())
+
+        body.append(new_segment)
+
+
 
     for i in range(1, len(body)):
         if head.distance(body[i]) < 10:
@@ -145,3 +154,9 @@ def update():
 
 
 screen.exitonclick()
+
+
+
+
+
+
